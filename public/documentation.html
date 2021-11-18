@@ -7,10 +7,36 @@
     <title>Documentation</title>
 </head>
 <body>
-    <h1>Documentation Page</h1>
-    <p>To build the server-side component of a “movies” web application. The web
-      application will provide users with access to information about different
-      movies, directors, and genres. Users will be able to sign up, update their
-      personal information, and create a list of their favorite movies.</p>
-    </body>
+    <table>
+        <thead>
+            <tr>
+                <th>Action</th>
+                <th>Request</th>
+                <th>URL</th>
+                <th>Response</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Return all movies</td>
+                <td>GET</td>
+                <td>'/movies'</td>
+                <td>Returns an array of all JSON movie objects in the database</td>
+            </tr>
+            <tr>
+                <td>Return single movie data</td>
+                <td>GET</td>
+                <td>'/movies/:title'</td>
+                <td>Returns a JSON object returning the data for one movie based on the title passed in the url parameter</td>
+            </tr>
+            <tr>
+                <td>Return data about a genre</td>
+                <td>GET</td>
+                <td>'/movies/:title/:genre'</td>
+                <td>Returns an array of all JSON movie objects within database that includes the genre passed in the url parameter</td>
+            </tr>
+            
+        </tbody>
+    </table>
+</body>
 </html>
