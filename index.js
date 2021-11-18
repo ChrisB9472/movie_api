@@ -1,6 +1,13 @@
-const express = require('express');
-const morgan = require('morgan');
+const express = require('express'),
+  bodyParser = require('body-parser'),
+  uuid = require('uuid');
+
 const app = express();
+
+app.use(bodyParser.json());
+
+const morgan = require('morgan');
+
 
 let movies = [
   {
@@ -69,6 +76,10 @@ app.get('/documentation', (req, res) => {
 
 app.get('/movies', (req, res) => {
   res.json(movies);
+});
+app.get('/movies/:title', (req, res) => {
+  res.json(movies.find((movie) =>
+    { return student.title === req.params.title }));
 });
 // Return data about a genre (description) by name/title.
 app.get('/movies/:title/genre', (req, res) => {
