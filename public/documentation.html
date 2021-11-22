@@ -8,35 +8,63 @@
 </head>
 <body>
     <table>
-        <thead>
-            <tr>
-                <th>Action</th>
-                <th>Request</th>
-                <th>URL</th>
-                <th>Response</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Return all movies</td>
-                <td>GET</td>
-                <td>'/movies'</td>
-                <td>Returns an array of all JSON movie objects in the database</td>
-            </tr>
-            <tr>
-                <td>Return single movie data</td>
-                <td>GET</td>
-                <td>'/movies/:title'</td>
-                <td>Returns a JSON object returning the data for one movie based on the title passed in the url parameter</td>
-            </tr>
-            <tr>
-                <td>Return data about a genre</td>
-                <td>GET</td>
-                <td>'/movies/:title/:genre'</td>
-                <td>Returns an array of all JSON movie objects within database that includes the genre passed in the url parameter</td>
-            </tr>
-            
-        </tbody>
+      <tbody>
+      <tr>
+          <td>GET request</td>
+          <td>/</td>
+          <td>return welcome to the site</td>
+      </tr>
+      <tr>
+          <td>GET request</td>
+          <td>/movies</td>
+          <td>Gets all information about all movies</td>
+      </tr>
+      <tr>
+          <td>GET request</td>
+          <td>/movies/:title</td>
+          <td>Gets movie by title</td>
+      </tr>
+      <tr>
+          <td>GET request</td>
+          <td>/movies/genre/:name</td>
+          <td>return info about a specific movie genre</td>
+      </tr>
+      <tr>
+          <td>GET request</td>
+          <td>/movies/director/:name</td>
+          <td>return info about a specific movie director</td>
+      </tr>
+      <tr>
+          <td>GET request</td>
+          <td>/users</td>
+          <td>Get all users</td>
+      </tr>
+      <tr>
+          <td>POST request</td>
+          <td>/users</td>
+          <td>register to our system</td>
+      </tr>
+      <tr>
+          <td>PUT request</td>
+          <td>/users/:ID</td>
+          <td>Update the persons user info</td>
+      </tr>
+      <tr>
+          <td>POST request</td>
+          <td>/users/:ID/:movieTitle</td>
+          <td>Add a movie to a specific user's profile</td>
+      </tr>
+      <tr>
+          <td>DELETE request</td>
+          <td>/users/:id/unregister</td>
+          <td>Unregister a user from the database</td>
+      </tr>
+      <tr>
+          <td>DELETE request</td>
+          <td>/users/:ID/:deleteFavorite</td>
+          <td>Delete a favorite movie from the users favorites</td>
+      </tr>
+  </tbody>
     </table>
 </body>
 </html>
