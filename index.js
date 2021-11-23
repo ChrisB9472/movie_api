@@ -1,7 +1,13 @@
+const express = require('express');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const uuid = ('uuid');
+
+const app = express();
 
 const mongoose = require('mongoose');
-
 const Models = require('./models.js');
+
 
 const Movies = Models.Movie;
 const Genre = Models.Genre;
@@ -9,16 +15,17 @@ const Users = Models.User;
 
 mongoose.connect('mongodb://localhost:27017/MovieDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
-const express = require('express'),
-  bodyParser = require('body-parser'),
-  uuid = require('uuid');
-
-const app = express();
-
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-const morgan = require('morgan');
 
+let auth = require('./auth.js')(app);
+
+const passport = require('passport');
+
+require('./passport.js');
+
+app.use(morgan('common'));
 
 
 
@@ -31,7 +38,7 @@ app.get('/', (req, res) =>{
 
 
 // Return a list of ALL movies to the user
-app.get('/movies', (req, res) => {
+app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
     Movies.find()
         .then((movies) => {
             res.status(201).json(movies);
@@ -103,6 +110,8 @@ app.get('/users/:Username', (req, res) => {
     });
 });
 
+
+
 // Update a user's info, by username
 /* We’ll expect JSON in this format
 {
@@ -149,7 +158,34 @@ app.post('/users/:Username/movies/:MovieID',(req, res) => {
         }
     });
 });
+//Adds data for a new user to our list of users
 
+app.post('/users', (req, res) => {
+
+        Users.findOne({Username: req.body.Username})
+            .then((user) => {
+                if(user) {
+                 return res.status(400).send(req.body.Username + ' already exists');
+             } else {
+                 Users
+                    .create({
+                        Username: req.body.Username,
+                        Password: req.body.Password,
+                        Birthday: req.body.Birthday,
+                        Email: req.body.Email
+                    })
+                    .then((user) => {res.status(201).json(user)})
+                    .catch((error) => {
+                        console.error(error);
+                        res.status(500).send('Error: ' + error);
+                 })
+                }
+            })
+        .catch((error) => {
+            console.error(error);
+            res.status(500).send('Error: ' + error);
+        });
+});
 //Allow users to remove a movie from their list of favorites
 app.delete('/users/:Username/movies/:MovieID', (req, res) => {
     Users.findOneAndUpdate({ Username: req.params.Username},
