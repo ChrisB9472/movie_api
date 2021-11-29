@@ -18,12 +18,9 @@ mongoose.connect('mongodb://localhost:27017/MovieDB', { useNewUrlParser: true, u
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-let auth = require('./auth.js')(app);
-
+let auth = require('./auth')(app);
 const passport = require('passport');
-
-require('./passport.js');
+require('./passport');
 
 app.use(morgan('common'));
 
@@ -88,7 +85,7 @@ app.get('/director/:name', (req, res) => {
 
 //READ
 //Get all users
-app.get('/users', (req, res) => {
+app.get('/users', passport.authenticate('jwt',{session: false}), (req, res) => {
   Users.find()
     .then((users) => {
       res.status(201).json(users);
