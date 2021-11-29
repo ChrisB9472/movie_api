@@ -15,6 +15,7 @@ let generateJWTToken = (user) => {
 }
 
 
+
 /* POST login. */
 module.exports = (router) => {
   router.post('/login', (req, res) => {
@@ -25,6 +26,8 @@ module.exports = (router) => {
           user: user
         });
       }
+
+
       req.login(user, { session: false }, (error) => {
         if (error) {
           res.send(error);
