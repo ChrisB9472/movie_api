@@ -90,7 +90,7 @@ app.get('/genres/:Name', (req, res) => {
 //READ
 //Gets information about a specific director
 app.get('/director/:name', (req, res) => {
-  Movies.findOne({ "Director.Name" : req.params.name })
+  Movies.find({ "Director.Name" : req.params.name })
     .then((movie) => {
       res.json(movie);
     })
@@ -102,7 +102,7 @@ app.get('/director/:name', (req, res) => {
 
 //READ
 //Get all users
-app.get('/users', (req, res) => {
+app.get('/users', passport.authenticate('jwt',{session: false}), (req, res) => {
   Users.find()
     .then((users) => {
       res.status(201).json(users);
