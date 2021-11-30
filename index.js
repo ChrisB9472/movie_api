@@ -12,6 +12,7 @@ const Models = require('./models.js');
 const Movies = Models.Movie;
 const Genre = Models.Genre;
 const Users = Models.User;
+require('dotenv').config();
 
 //mongoose.connect('mongodb://localhost:27017/MovieDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
