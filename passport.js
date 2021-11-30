@@ -31,7 +31,7 @@ let Users = Models.User,
       console.log('finished');
       return callback(null, user);
     });
-  }));s
+  }));
 
 passport.use(new JWTStrategy({
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
