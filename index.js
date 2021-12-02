@@ -16,7 +16,7 @@ require('dotenv').config();
 
 //mongoose.connect('mongodb://localhost:27017/MovieDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
-mongoose.connect( 'mongodb+srv://myFlixDB:%23Ula8133@myflixdb.d5rmr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect( 'mongodb+srv://myFlixDB:dnJnAQyXFho0XHhG@myflixdb.d5rmr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
