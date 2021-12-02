@@ -6,19 +6,6 @@ const { check, validationResult } = require('express-validator');
 const app = express();
 
 const mongoose = require('mongoose');
-require('dotenv').config();
-
-const connectToMongo = async() => {
-    await mongoose.connect(process.env.DATABASE_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false,
-    });
-    return mongoose;
-};
-
-await connectToMongo().then(async() => console.log('connected yeee'));
-
 const Models = require('./models.js');
 
 
