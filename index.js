@@ -112,7 +112,7 @@ app.get('/users',  { session: false }), (req, res) => {
       console.error(err);
       res.status(400).send('Error: ' + err);
     });
-});
+};
 
 app.get('/users/:Username', (req, res) => {
   Users.findOne({ Username: req.params.Username })
