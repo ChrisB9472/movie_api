@@ -103,7 +103,7 @@ app.get('/director/:name', (req, res) => {
 
 //READ
 //Get all users
-app.get('/users',  { session: false }), (req, res) => {
+app.get('/users', (req, res) => {
   Users.find()
     .then((users) => {
       res.status(201).json(users);
@@ -112,7 +112,7 @@ app.get('/users',  { session: false }), (req, res) => {
       console.error(err);
       res.status(400).send('Error: ' + err);
     });
-};
+});
 
 app.get('/users/:Username', (req, res) => {
   Users.findOne({ Username: req.params.Username })
