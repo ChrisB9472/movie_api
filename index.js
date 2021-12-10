@@ -14,9 +14,9 @@ const Genre = Models.Genre;
 const Users = Models.User;
 require('dotenv').config();
 
-mongoose.connect('mongodb://localhost:27017/MovieDB', { useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect('mongodb+srv://myFlixDB:<password>@myflixdb.d5rmr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 
-//mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -261,3 +261,6 @@ const port = process.env.PORT || 8080;
 app.listen(port, '0.0.0.0',() => {
  console.log('Listening on Port ' + port);
 });
+
+
+mongoimport --uri mongodb+srv://myFlixDB:myFlixDB@myflixdb.d5rmr.mongodb.net/myFlixDB --collection movies --type json --file ./desktop/movies/test.json
