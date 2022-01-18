@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const cors = require('cors');
-let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'https://chris-movies.netlify.app/'];
+let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'https://chris-movies.netlify.app/ '];
 
 app.use(cors({
   origin: (origin, callback) => {
@@ -48,7 +48,7 @@ app.use(morgan('common'));
 
 //Return the home page of myFlix App
 app.get('/', (req, res) =>{
-    res.send('Welcome to myFlix App');
+    res.send('Welcome to myFlix App.');
 })
 
 
